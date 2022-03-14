@@ -18,6 +18,5 @@ for price_buy in np.arange(price_sell , price_sell-0.05, -0.0001)[1:]:
 set số lượng lời tùy lòng tham:
 
 ``
-
 for j in np.arange(5, 20, 5):
 ``
