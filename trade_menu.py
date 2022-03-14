@@ -64,7 +64,7 @@ def main():
             my_tree.column(column, width =70, stretch=True)
         my_tree.heading(column, text=column)
     # put data in tree view
-    df_rows = df[-5:].to_numpy().tolist()
+    df_rows = df[-10:].to_numpy().tolist()
     for row in df_rows:
         my_tree.insert("", "end", values=row)
     my_tree.grid(row= 12, column=0, padx=0, pady=5, columnspan = 2)
@@ -90,7 +90,7 @@ def main():
                 my_tree.column(column, width =70, stretch=True)
             my_tree.heading(column, text=column)
         # put data in tree view
-        df_rows = df[-5:].to_numpy().tolist()
+        df_rows = df[-10:].to_numpy().tolist()
         for row in df_rows:
             my_tree.insert("", "end", values=row)
 

@@ -63,13 +63,13 @@ def insert():
             # Update number_token and capital:
             if sell == 1 :
                 number_token_update = df[-1:].number_token - number_token_insert 
-                capital_update = df[-1:].capital - number_token_insert*price_insert*usdt
             if buy == 1 :
                 number_token_update = df[-1:].number_token + number_token_insert 
-                capital_update = df[-1:].capital + number_token_insert*price_insert*usdt
             
             # Caculator profit
             if trade_insert == 0:
+                
+                capital_update  = df[-1:].capital + number_token_insert*price_insert*usdt + number_token_insert*price_insert*usdt*0.002
                 
                 if last_insert == 1:
                     profit_day = df.number_token.tolist()[-1] - df.number_token.tolist()[0] - df.loc[(df.trade == 0) & (df.number_token_buy >0)].number_token_buy.sum() + df.loc[(df.trade == 0) & (df.number_token_sell >0)].number_token_sell.sum()
@@ -77,6 +77,8 @@ def insert():
                     profit_day = 0
                     
             elif trade_insert == 1:
+                
+                capital_update  = df[-1:].capital
                 
                 if last_insert == 1:
                     profit_day = number_token_update - number_token_insert - df.number_token.tolist()[0] - df.loc[(df.trade == 0) & (df.number_token_buy >0)].number_token_buy.sum() + df.loc[(df.trade == 0) & (df.number_token_sell >0)].number_token_sell.sum()
@@ -183,7 +185,7 @@ def insert():
                 my_tree.column(column, width =70, stretch=True)
             my_tree.heading(column, text=column)
         # put data in tree view
-        df_rows = df[-5:].to_numpy().tolist()
+        df_rows = df[-10:].to_numpy().tolist()
         for row in df_rows:
             my_tree.insert("", "end", values=row)
 
@@ -224,7 +226,7 @@ def insert():
                 my_tree.column(column, width =70, stretch=True)
             my_tree.heading(column, text=column)
         # put data in tree view
-        df_rows = df[-5:].to_numpy().tolist()
+        df_rows = df[-10:].to_numpy().tolist()
         for row in df_rows:
             my_tree.insert("", "end", values=row)
 
